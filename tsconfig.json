@@ -8,6 +8,9 @@
       ],
       "@features/artists": [
         "dist/features/artists"
+      ],
+      "@model/artists": [
+        "dist/model/artists"
       ]
     },
     "baseUrl": "./",
