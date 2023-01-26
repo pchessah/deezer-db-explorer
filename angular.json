@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "libs",
   "projects": {
     "angular-test": {
       "projectType": "application",
@@ -78,6 +78,42 @@
           }
         }
       }
+    },
+    "@features/artists": {
+      "projectType": "library",
+      "root": "libs/features/artists",
+      "sourceRoot": "libs/features/artists/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/features/artists/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/features/artists/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/features/artists/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "libs/features/artists/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
