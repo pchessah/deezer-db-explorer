@@ -3,6 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@elements/external": [
+        "dist/elements/external"
+      ],
       "@elements/pages": [
         "dist/elements/pages"
       ],

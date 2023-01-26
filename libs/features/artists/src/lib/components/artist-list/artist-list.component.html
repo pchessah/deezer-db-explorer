@@ -1,1 +1,3 @@
-<p>artist-list works!</p>
+<mat-form-field  appearance="outline" class="example-full-width">
+  <input matInput placeholder="Eminem" [(ngModel)]="artist" (ngModelChange)="searchArtist($event)">
+</mat-form-field>
