@@ -3,6 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@elements/pages": [
+        "dist/elements/pages"
+      ],
       "@features/artists": [
         "dist/features/artists"
       ]
