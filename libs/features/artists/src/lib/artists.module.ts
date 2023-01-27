@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule} from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,12 +15,12 @@ import { ArtistsRoutingModule } from './artists-routing.module';
     ArtistListComponent,
     SingleArtistComponent
   ],
-  imports: [
+  imports: [CommonModule,
     ArtistsRoutingModule, MaterialDesignModule, FormsModule, HttpClientModule],
   exports: [
     ArtistListComponent,
     SingleArtistComponent
   ],
-  providers:[SearchArtistService]
+  providers: [SearchArtistService]
 })
 export class ArtistsModule { }

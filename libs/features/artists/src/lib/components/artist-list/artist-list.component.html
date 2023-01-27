@@ -1,5 +1,20 @@
 
 <div class="page">
+  <div class="input-field-container">
     <input type="search" matInput placeholder="Search for artist" [(ngModel)]="artist" (ngModelChange)="searchArtist($event)">
+  </div>
+
+  <div class="search-res-container">
+    <ng-container *ngIf="artistDetails.length; else noResults">
+      <div *ngFor="let artistDetail of artistDetails" class="search-res-card">
+        <img class="artist-img" [src]="artistDetail.picture" alt="artist-img"/>
+      </div>
+    </ng-container>
+  </div>
+
 </div>
+
+<ng-template #noResults>
+  <img class="no-res" src="assets/no_results.svg" alt="No results found"/>
+</ng-template>
 
