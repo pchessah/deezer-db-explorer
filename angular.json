@@ -181,6 +181,39 @@
           }
         }
       }
+    },
+    "@state/artists": {
+      "projectType": "library",
+      "root": "libs/state/artists",
+      "sourceRoot": "libs/state/artists/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/state/artists/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/state/artists/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/state/artists/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "libs/state/artists/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

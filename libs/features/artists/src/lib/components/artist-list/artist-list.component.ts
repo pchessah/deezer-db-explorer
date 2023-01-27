@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { SearchArtistService } from 'libs/state/artists/src/public-api';
 
 @Component({
   selector: 'lib-artist-list',
@@ -9,14 +9,13 @@ import { Component } from '@angular/core';
 export class ArtistListComponent {
 
   artist="";
-  DEFAULT_STRING = 'api/search?q='
 
-  constructor(private http: HttpClient){ }
+  constructor(private _searchArtistService: SearchArtistService){ }
 
   searchArtist(artist: string){
-    return this.http.get(`${this.DEFAULT_STRING}${artist}`).subscribe(res =>{
+    return this._searchArtistService.searchArtist(artist).subscribe(artistData =>{
       debugger
-    })
+    });
   }
 
 
