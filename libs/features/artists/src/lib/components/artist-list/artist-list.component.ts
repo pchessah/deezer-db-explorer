@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class ArtistListComponent {
 
   artist="";
-  DEFAULT_STRING = 'https://api.deezer.com/search?q='
+  DEFAULT_STRING = 'api/search?q='
 
   constructor(private http: HttpClient){ }
 
