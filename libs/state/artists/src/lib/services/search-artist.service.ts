@@ -7,7 +7,7 @@ import { of } from "rxjs";
 
 export class SearchArtistService {
 
-  DEFAULT_STRING = 'api/search?q='
+  DEFAULT_STRING = 'search?q='
 
   constructor(private _http:HttpClient) {}
 
