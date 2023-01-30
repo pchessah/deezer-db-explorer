@@ -1,1 +1,8 @@
-<p>single-artist works!</p>
+
+<div class="page">
+  <mat-card class="artist-card">
+    <img class="artist-img" [src]="artist.picture_xl" alt="artist-img"/>
+    <span class="artist-name">{{artist.name}}</span>
+    <span class="fans">{{artist.nb_fan}} Fans</span>
+  </mat-card>  
+</div>

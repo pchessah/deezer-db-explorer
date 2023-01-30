@@ -16,4 +16,11 @@ export class SearchArtistService {
                .get(`${this.DEFAULT_STRING}${artist}`)
                .pipe(map(res => (res as any).data), catchError(e => of(e)));
   }
+
+
+  getSingleArtist(id:string){
+    const ARTIST_STRING = 'artist/';
+    return this._http.get(`${ARTIST_STRING}${id}`)
+               .pipe(map(res => (res)), catchError(e => of(e)));
+  }
 }

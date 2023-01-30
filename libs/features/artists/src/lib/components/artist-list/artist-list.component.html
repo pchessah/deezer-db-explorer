@@ -6,9 +6,14 @@
 
   <div class="search-res-container">
     <ng-container *ngIf="artistDetails.length; else noResults">
-      <div *ngFor="let artistDetail of artistDetails" class="search-res-card">
-        <img class="artist-img" [src]="artistDetail.picture" alt="artist-img"/>
+      <div *ngFor="let artistDetail of artistDetails" class="search-res-card" (click)="goToArtistPage(artistDetail)">
+        <img class="artist-img" [src]="artistDetail.picture_xl" alt="artist-img"/>
+        <span class="artist-name">{{artistDetail.name}}</span>
+        <span (click)="goToArtistPage(artistDetail)" class="view-artist">View Details</span>
+        <!-- <span class="fans">{{artistDetail.nb_album}} Albums.</span>
+        <span class="fans">{{artistDetail.nb_fan}} Fans</span> -->
       </div>
+      <ng-container *ngIf="isLoaded; else loading"></ng-container>
     </ng-container>
   </div>
 
@@ -16,5 +21,11 @@
 
 <ng-template #noResults>
   <img class="no-res" src="assets/no_results.svg" alt="No results found"/>
+</ng-template>
+
+<ng-template #loading>
+  <div class="spinner">
+    <mat-spinner [diameter]="20"></mat-spinner>
+  </div>
 </ng-template>
 
