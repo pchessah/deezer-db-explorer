@@ -14,7 +14,7 @@ export class SearchArtistService {
   searchArtist(artist: string){
     console.log('here')
     return this._http
-               .get(`${this.DEFAULT_STRING}${artist}`)
+               .get(`${this.DEFAULT_STRING}${artist}`, { responseType: 'json'})
                .pipe(map(res => (res as any).data), catchError(e => {
                 console.log(e)
                 return of(e)
