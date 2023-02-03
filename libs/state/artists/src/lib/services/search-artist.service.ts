@@ -7,7 +7,7 @@ import { of } from "rxjs";
 
 export class SearchArtistService {
 
-  DEFAULT_STRING = 'search?q='
+  DEFAULT_STRING = 'https://api.deezer.com/search?q='
 
   constructor(private _http:HttpClient) {}
 
@@ -19,20 +19,20 @@ export class SearchArtistService {
 
 
   getSingleArtist(id:string){
-    const ARTIST_STRING = 'artist/';
+    const ARTIST_STRING = 'https://api.deezer.com/artist/';
     return this._http.get(`${ARTIST_STRING}${id}`)
                .pipe(map(res => (res)), catchError(e => of(e)));
   }
 
   getTopTracks(id:string){
-    const ARTIST_STRING = 'artist/';
+    const ARTIST_STRING = 'https://api.deezer.com/artist/';
     return this._http.get(`${ARTIST_STRING}${id}/top`)
                .pipe(map(res =>  (res as any).data), catchError(e => of(e)));
 
   }
 
   getAlbums(id:string){
-    const ARTIST_STRING = 'artist/';
+    const ARTIST_STRING = 'https://api.deezer.com/artist/';
     return this._http.get(`${ARTIST_STRING}${id}/albums`)
                .pipe(map(res =>  (res as any).data), catchError(e => of(e)));
 
