@@ -17,6 +17,9 @@ export class SingleArtistComponent implements OnInit {
   isLoaded = false
   albums: any;
   artistDetails: IArtist[] = [];
+  displayedColumns: string[] = ['track', 'track-time'];
+  dataSource!:any;
+
 
   constructor(private _getArtistService: SearchArtistService,
               private _router: Router,
@@ -43,6 +46,7 @@ export class SingleArtistComponent implements OnInit {
     combineLatest([artist$, topTracks$, albums$]).subscribe(([artist, topTracks, albums]) =>{
       this.artist = artist;
       this.topTracks = topTracks;
+      this.dataSource = this.topTracks;
       this.albums = albums;
       this.isLoaded = true
     })
@@ -52,10 +56,15 @@ export class SingleArtistComponent implements OnInit {
     this.artistDetails = artists;
   }
 
+  getTime(time: number){
+    const convertedMoment = moment(time * 1000).format("mm:ss")
+    return convertedMoment;
+  }
+
   getYear(dateString:string){
     const date = new Date(dateString);
     const convertedMoment = moment(date).format("YYYY");
-    return convertedMoment
+    return convertedMoment;
   }
 
 }

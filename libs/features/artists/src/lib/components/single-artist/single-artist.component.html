@@ -18,12 +18,24 @@
       </div>
 
       <div class="minor-details">
-
         <section>
           <span> <strong>Top Tracks: </strong></span>
-          <ul *ngFor="let track of topTracks">
-            <li>{{track.title}}</li>
-          </ul>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Tracks Column -->
+            <ng-container matColumnDef="track">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+  
+            <!-- track-time Column -->
+            <ng-container matColumnDef="track-time">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{getTime(element.duration)}} </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
         </section>
       </div>
     </div>
