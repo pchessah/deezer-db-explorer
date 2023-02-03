@@ -25,6 +25,7 @@
   margin: 10px;
   width: 90%;
   height: 50vh;
+  flex-wrap:wrap;
 }
 
 .bottom-part{
@@ -106,5 +107,20 @@ table {
 
 .date{
   font-size: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  .image-container{
+    height: 30vh;
+  }
+
+  .album-container{
+    flex-direction: column;
+  }
+
+  .top-part{
+    height: unset;
+  }
+
 }
 
