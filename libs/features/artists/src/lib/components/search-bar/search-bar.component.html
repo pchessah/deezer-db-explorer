@@ -1,0 +1,7 @@
+<input type="search" matInput placeholder="Search for artist" [(ngModel)]="artist"
+  (ngModelChange)="searchArtist($event)">
+<div class="option-list" *ngIf="listIsVisible">
+  <mat-option (click)="goToArtistPage(artist)" *ngFor="let artist of artistDetails" [value]="artist">
+    {{artist.name}}
+  </mat-option>
+</div>

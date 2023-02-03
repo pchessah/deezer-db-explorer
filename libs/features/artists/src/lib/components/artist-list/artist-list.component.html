@@ -1,7 +1,7 @@
 
 <div class="page">
   <div class="input-field-container">
-    <input type="search" matInput placeholder="Search for artist" [(ngModel)]="artist" (ngModelChange)="searchArtist($event)">
+    <lib-search-bar (searchArtistEvent)="searchArtist($event)"></lib-search-bar>
   </div>
 
   <div class="search-res-container">

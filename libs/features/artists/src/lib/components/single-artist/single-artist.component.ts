@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { IArtist } from 'libs/model/artists/src/lib/artist.interface';
 import { SearchArtistService } from 'libs/state/artists/src/public-api';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'lib-single-artist',
@@ -11,15 +12,54 @@ import { SearchArtistService } from 'libs/state/artists/src/public-api';
 export class SingleArtistComponent implements OnInit {
 
   artist!: IArtist;
+  topTracks: any;
+  displayedColumns: string[] = ['tracks'];
+  displayedColumns2: string[] = ['album', 'year'];
+
+  dataSource!:any;
+  dataSource2!:any;
+  isLoaded = false
+  albums: any;
+  artistDetails: IArtist[] = [];
 
   constructor(private _getArtistService: SearchArtistService,
-    private _activatedRoute: ActivatedRoute) { }
+              private _router: Router,
+              
+              private _activatedRoute: ActivatedRoute)
+  {
+   _router.events.subscribe((val) => {
+    if(val instanceof NavigationEnd){
+      this.setArtistDetails();
+    }
+  });
+
+  }
 
   ngOnInit() {
+    this.setArtistDetails();
+  }
+
+  setArtistDetails(){
     const id = this._activatedRoute.snapshot.url[0].path;
-    this._getArtistService.getSingleArtist(id).subscribe(artist => {
+
+    const artist$ =  this._getArtistService.getSingleArtist(id);
+    const topTracks$ = this._getArtistService.getTopTracks(id);
+    const albums$ = this._getArtistService.getAlbums(id);
+
+    combineLatest([artist$, topTracks$, albums$]).subscribe(([artist, topTracks, albums]) =>{
       this.artist = artist;
-    });
+      this.topTracks = topTracks;
+      this.albums = albums;
+
+      this.dataSource2 = this.albums
+      this.dataSource = this.topTracks;
+      this.isLoaded = true
+    })
+    
+  }
+
+  searchArtist(artists: IArtist[]){
+    this.artistDetails = artists;
   }
 
 }
