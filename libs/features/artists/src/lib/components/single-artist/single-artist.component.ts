@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import * as moment from 'moment';
 import { IArtist } from 'libs/model/artists/src/lib/artist.interface';
 import { SearchArtistService } from 'libs/state/artists/src/public-api';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'lib-single-artist',
@@ -13,26 +14,19 @@ export class SingleArtistComponent implements OnInit {
 
   artist!: IArtist;
   topTracks: any;
-  displayedColumns: string[] = ['tracks'];
-  displayedColumns2: string[] = ['album', 'year'];
-
-  dataSource!:any;
-  dataSource2!:any;
   isLoaded = false
   albums: any;
   artistDetails: IArtist[] = [];
 
   constructor(private _getArtistService: SearchArtistService,
               private _router: Router,
-              
               private _activatedRoute: ActivatedRoute)
   {
-   _router.events.subscribe((val) => {
-    if(val instanceof NavigationEnd){
-      this.setArtistDetails();
-    }
-  });
-
+    _router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd){
+        this.setArtistDetails();
+      }
+    });
   }
 
   ngOnInit() {
@@ -50,16 +44,18 @@ export class SingleArtistComponent implements OnInit {
       this.artist = artist;
       this.topTracks = topTracks;
       this.albums = albums;
-
-      this.dataSource2 = this.albums
-      this.dataSource = this.topTracks;
       this.isLoaded = true
     })
-    
   }
 
   searchArtist(artists: IArtist[]){
     this.artistDetails = artists;
+  }
+
+  getYear(dateString:string){
+    const date = new Date(dateString);
+    const convertedMoment = moment(date).format("YYYY");
+    return convertedMoment
   }
 
 }
