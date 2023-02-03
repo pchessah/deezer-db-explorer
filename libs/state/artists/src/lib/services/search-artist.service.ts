@@ -12,9 +12,13 @@ export class SearchArtistService {
   constructor(private _http:HttpClient) {}
 
   searchArtist(artist: string){
+    console.log('here')
     return this._http
                .get(`${this.DEFAULT_STRING}${artist}`)
-               .pipe(map(res => (res as any).data), catchError(e => of(e)));
+               .pipe(map(res => (res as any).data), catchError(e => {
+                console.log(e)
+                return of(e)
+              }));
   }
 
 
