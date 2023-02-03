@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { of } from "rxjs";
 
 @Injectable({providedIn: 'root'})
@@ -12,10 +12,9 @@ export class SearchArtistService {
   constructor(private _http:HttpClient) {}
 
   searchArtist(artist: string){
-    debugger
     return this._http
                .get(`${this.DEFAULT_STRING}${artist}`)
-               .pipe(tap((t) => {console.log('here'); debugger;}),map(res => (res as any).data), catchError(e => of(e)));
+               .pipe(map(res => (res as any).data), catchError(e => of(e)));
   }
 
 
