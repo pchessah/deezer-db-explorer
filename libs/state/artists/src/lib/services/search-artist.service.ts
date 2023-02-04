@@ -12,10 +12,14 @@ export class SearchArtistService {
   constructor(private _http:HttpClient) {}
 
   searchArtist(artist: string){
-    console.log('here');
+    console.log('here1');
+    return this._http.request('GET', "search?q=" + artist, { responseType: 'json' }).pipe(map(res => (res as any).data), catchError(e => {
+      console.log(e)
+      return of(e)
+    }));
     return this._http
-               .get("search?q=" + artist)
-               .pipe(catchError(e => {
+               .get("search?q=" + artist, { responseType: 'json' })
+               .pipe(map(res => (res as any).data), catchError(e => {
                 console.log(e)
                 return of(e)
               }));

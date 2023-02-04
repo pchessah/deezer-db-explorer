@@ -28,7 +28,7 @@ export class SearchBarComponent {
       return;
     } else {
       return this._searchArtistService.searchArtist(artist).pipe(filter(artistData => !!artistData)).subscribe(artistData => {
-        this.artistDetails = artistData.data.map((s: { artist: any; }) => s.artist);
+        this.artistDetails = artistData.map((s: { artist: any; }) => s.artist);
         this.searchArtistEvent.emit(this.artistDetails);
         this.isLoaded = true;
       });
