@@ -1,28 +1,20 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError, map } from "rxjs/operators";
-import { of, throwError } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable({providedIn: 'root'})
 
 export class SearchArtistService {
 
-  DEFAULT_STRING = 'search?q='
+  DEFAULT_STRING = "search?q="
 
   constructor(private _http:HttpClient) {}
 
   searchArtist(artist: string){
-    console.log('here1');
-    return this._http.request('GET', "search?q=" + artist, { responseType: 'json' }).pipe(map(res => (res as any).data), catchError(e => {
-      console.log(e)
-      return of(e)
-    }));
-    return this._http
-               .get("search?q=" + artist, { responseType: 'json' })
-               .pipe(map(res => (res as any).data), catchError(e => {
-                console.log(e)
-                return of(e)
-              }));
+    return this._http.request('GET', "search?q=" + artist, { responseType: 'json' })
+                     .pipe(map(res => (res as any).data), 
+                           catchError(e => { console.log(e); return of(e)}));
   }
 
 
