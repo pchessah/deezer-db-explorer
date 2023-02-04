@@ -13,7 +13,7 @@ export class SearchArtistService {
 
   searchArtist(artist: string){
     const httpOptions = {
-      headers:new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers:new HttpHeaders({ 'Content-Type': 'application/xml' })
     }
 
     return this._http.request('GET', "search?q=" + artist, httpOptions)
