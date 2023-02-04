@@ -17,7 +17,7 @@ export class SearchArtistService {
       headers:new HttpHeaders({ 'Content-Type': 'application/json', responseType:'json', Accept: 'application/json' })
     }
 
-    return this._http.request('GET', "search?q=" + artist, httpOptions)
+    return this._http.request('GET', "search?q="+artist+"&output=json", httpOptions)
                      .pipe(map(res => (res as any).data), 
                            tap((r)=> {debugger;}),
                            catchError(e => { console.log(e); return of(e)}));
