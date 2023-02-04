@@ -10,7 +10,7 @@ export class SearchArtistService {
   constructor(private _http:HttpClient) { }
 
   searchArtist(artist: string){
-    const SEARCH_STRING =  "search?q="+artist;
+    const SEARCH_STRING = "https://api.deezer.com/search?q="+artist;
     return this._http.get(SEARCH_STRING)
                      .pipe(map(res => (res as any).data),
                            catchError(e => { console.log(e); return of(e)}));
