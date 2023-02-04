@@ -15,7 +15,7 @@ export class SearchArtistService {
     console.log('here');
     return this._http
                .get("search?q=" + artist)
-               .pipe(map(res => (res as any).data), catchError(e => {
+               .pipe(catchError(e => {
                 console.log(e)
                 return of(e)
               }));
