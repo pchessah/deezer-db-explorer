@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { uniqBy as __UniqBy } from 'lodash';
 import { IArtist } from 'libs/model/artists/src/lib/artist.interface';
 import { SearchArtistService } from 'libs/state/artists/src/public-api';
 
@@ -29,7 +30,7 @@ export class SearchBarComponent {
     } else {
       return this._searchArtistService.searchArtist(artist).pipe(filter(artistData => !!artistData)).subscribe(artistData => {
         this.artistDetails = artistData.map((s: { artist: any; }) => s.artist);
-        this.searchArtistEvent.emit(this.artistDetails);
+        this.searchArtistEvent.emit(__UniqBy(this.artistDetails, "id"));
         this.isLoaded = true;
       });
     }
