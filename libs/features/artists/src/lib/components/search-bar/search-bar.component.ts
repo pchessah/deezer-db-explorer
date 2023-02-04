@@ -34,7 +34,6 @@ export class SearchBarComponent {
         this.isLoaded = true;
       });
     }
-
   }
 
   goToArtistPage(artist: IArtist) {

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from "rxjs/operators";
 import { of } from "rxjs";
 
@@ -9,10 +9,14 @@ export class SearchArtistService {
 
   DEFAULT_STRING = "search?q="
 
-  constructor(private _http:HttpClient) {}
+  constructor(private _http:HttpClient) { }
 
   searchArtist(artist: string){
-    return this._http.request('GET', "search?q=" + artist)
+    const httpOptions = {
+      headers:new HttpHeaders({ 'Content-Type': 'application/json' })
+    }
+
+    return this._http.request('GET', "search?q=" + artist, httpOptions)
                      .pipe(map(res => (res as any).data), 
                            tap((r)=> {debugger;}),
                            catchError(e => { console.log(e); return of(e)}));
