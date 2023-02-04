@@ -11,6 +11,7 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
 import { SingleArtistComponent } from './components/single-artist/single-artist.component';
 import { ArtistsRoutingModule } from './artists-routing.module';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+
 @NgModule({
   declarations: [
     ArtistListComponent,
