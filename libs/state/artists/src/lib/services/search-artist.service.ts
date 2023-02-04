@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { of } from "rxjs";
 
 @Injectable({providedIn: 'root'})
@@ -12,7 +12,12 @@ export class SearchArtistService {
   searchArtist(artist: string){
     const SEARCH_STRING =  "search?q="+artist;
     return this._http.get(SEARCH_STRING,{responseType: 'json'})
-                     .pipe(map(res => (res as any).data),
+                     .pipe(tap(res => {
+                      console.log('Res is here', res);
+                      console.log('Res Json', JSON.stringify(res))
+                     
+                    }),
+                           map(res => (res as any).data),
                            catchError(e => { console.log(e); return of(e)}));
   }
 
