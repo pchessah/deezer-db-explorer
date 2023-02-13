@@ -23,10 +23,12 @@ export class SearchArtistService {
   let SEARCH_STRING =""
 
   if(this._env.production){
-    SEARCH_STRING = "https://api.deezer.com/search?q="+artist
+    SEARCH_STRING = this._env.apiUrl+"search?q="+artist;
   } else {
     SEARCH_STRING = "search?q="+artist;
   }
+
+  console.log('😃=😃😃😃😃😃😃==========>', SEARCH_STRING, '<==================😃😃😃😃😃😃=====')
 
   return this._http.get(SEARCH_STRING, httpOptions)
                     .pipe(map(res => (res as any).data),
