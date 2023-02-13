@@ -17,7 +17,7 @@ export class SearchArtistService {
 
   // const headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  const SEARCH_STRING =  "search?q="+artist+"&output=json";
+  const SEARCH_STRING = "https://api.deezer.com/search?q="+artist;
 
   return this._http.get(SEARCH_STRING, httpOptions)
                     .pipe(tap(res => {
