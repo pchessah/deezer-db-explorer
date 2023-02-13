@@ -3,7 +3,7 @@
     "target": "https://api.deezer.com/",
     "secure": false,
     "pathRewrite": {
-      "^/api": ""
+      "^/": ""
     },
     "changeOrigin": true,
     "logLevel": "debug"

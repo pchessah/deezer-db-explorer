@@ -15,17 +15,10 @@ export class SearchArtistService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  // const headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-  const SEARCH_STRING = "https://api.deezer.com/search?q="+artist;
+  const SEARCH_STRING = "search?q="+artist;
 
   return this._http.get(SEARCH_STRING, httpOptions)
-                    .pipe(tap(res => {
-                    console.log('Res is here again', res);
-                    console.log('Res Json', JSON.stringify(res))
-                    
-                  }),
-                          map(res => (res as any).data),
+                    .pipe(map(res => (res as any).data),
                           catchError(e => { console.log(e); return of(e)}));
   }
 
@@ -39,7 +32,6 @@ export class SearchArtistService {
     const ARTIST_STRING = 'artist/';
     return this._http.get(`${ARTIST_STRING}${id}/top`)
                .pipe(map(res =>  (res as any).data), catchError(e => of(e)));
-
   }
 
   getAlbums(id:string){
