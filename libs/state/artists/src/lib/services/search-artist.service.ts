@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from "rxjs/operators";
 import { of } from "rxjs";
@@ -7,7 +7,12 @@ import { of } from "rxjs";
 
 export class SearchArtistService {
 
-  constructor(private _http:HttpClient) { }
+  _env
+
+  constructor(private _http:HttpClient,
+              @Inject("ENV") _env: any) { 
+                this._env = _env;
+              }
 
   searchArtist(artist: string){
 
@@ -15,7 +20,13 @@ export class SearchArtistService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  const SEARCH_STRING = "search?q="+artist;
+  let SEARCH_STRING =""
+
+  if(this._env.production){
+    SEARCH_STRING = "https://api.deezer.com/search?q="+artist
+  } else {
+    SEARCH_STRING = "search?q="+artist;
+  }
 
   return this._http.get(SEARCH_STRING, httpOptions)
                     .pipe(map(res => (res as any).data),

@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesModule } from 'libs/elements/pages/src/public-api';
+import { ArtistsModule } from 'libs/state/artists/src/lib/artists.module';
 
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { PagesModule } from 'libs/elements/pages/src/public-api';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    PagesModule
+    PagesModule,
+    ArtistsModule.forRoot(environment)
   ],
   providers: [],
   bootstrap: [AppComponent]

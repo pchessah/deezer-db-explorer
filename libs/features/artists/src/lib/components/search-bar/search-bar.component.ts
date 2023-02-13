@@ -19,7 +19,7 @@ export class SearchBarComponent {
   @Output() searchArtistEvent = new EventEmitter();
 
   constructor(private _searchArtistService: SearchArtistService,
-    private _router: Router) { }
+              private _router: Router) { }
 
   searchArtist(artist: string) {
     this.isLoaded = false;

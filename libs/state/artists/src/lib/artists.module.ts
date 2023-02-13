@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [ ],
@@ -7,4 +7,11 @@ import { NgModule } from '@angular/core';
   exports: [
   ]
 })
-export class ArtistsModule { }
+export class ArtistsModule { 
+  static forRoot(environment: any): ModuleWithProviders<any> {
+    return {
+      ngModule: ArtistsModule,
+      providers: [{ provide: "ENV", useValue: environment }]
+    }
+  }
+}
