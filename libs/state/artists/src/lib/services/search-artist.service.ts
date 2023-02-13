@@ -10,10 +10,10 @@ export class SearchArtistService {
   constructor(private _http:HttpClient) { }
 
   searchArtist(artist: string){
-    const SEARCH_STRING =  "search?q="+artist;
+    const SEARCH_STRING =  "search?q="+artist+"&output=json";
     return this._http.get(SEARCH_STRING,{responseType: 'json'})
                      .pipe(tap(res => {
-                      console.log('Res is here', res);
+                      console.log('Res is here again', res);
                       console.log('Res Json', JSON.stringify(res))
                      
                     }),
