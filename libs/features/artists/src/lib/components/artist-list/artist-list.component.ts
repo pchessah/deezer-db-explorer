@@ -12,8 +12,12 @@ export class ArtistListComponent implements OnInit {
 
   artistDetails:IArtist[] = [];
   isLoaded = true;
+  url:string;
+  hasErrors:boolean = false;
 
-  constructor(private _router:Router){ }
+  constructor(private _router:Router){ 
+    this.url = 'https://cors-anywhere.herokuapp.com/corsdemo'
+  }
 
   ngOnInit(): void { }
 

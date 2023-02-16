@@ -11,12 +11,14 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
 import { SingleArtistComponent } from './components/single-artist/single-artist.component';
 import { ArtistsRoutingModule } from './artists-routing.module';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
     ArtistListComponent,
     SingleArtistComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SafePipe
   ],
   imports: [CommonModule,
     ArtistsRoutingModule, MaterialDesignModule, FormsModule, HttpClientModule],

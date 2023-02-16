@@ -4,7 +4,7 @@
     <lib-search-bar (searchArtistEvent)="searchArtist($event)"></lib-search-bar>
   </div>
 
-  <div class="search-res-container">
+  <div class="search-res-container" *ngIf="!hasErrors">
     <ng-container *ngIf="artistDetails.length; else noResults">
       <div *ngFor="let artistDetail of artistDetails" class="search-res-card" (click)="goToArtistPage(artistDetail)">
         <img class="artist-img" [src]="artistDetail.picture_xl" alt="artist-img"/>
@@ -16,6 +16,10 @@
       <ng-container *ngIf="isLoaded; else loading"></ng-container>
     </ng-container>
   </div>
+
+  <ng-container *ngIf="hasErrors">
+    <iframe  width="100%" height="300" [src]="url | safe"></iframe>
+  </ng-container>
 
 </div>
 
